@@ -2,9 +2,14 @@
 
 Quick instructions:
 
-```bash
-CID=$(docker run -d --privileged -p 1194:1194/udp -p 443:443/tcp jpetazzo/dockvpn)
-docker run -t -i -p 8080:8080 --volumes-from $CID jpetazzo/dockvpn serveconfig
+```
+make
+make serve
+```
+
+To get Ovpn files
+```
+wget --no-check-certificate https://localhost:8080 -O myConfig.ovpn
 ```
 
 Now download the file located at the indicated URL. You will get a
