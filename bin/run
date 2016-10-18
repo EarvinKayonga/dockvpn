@@ -10,9 +10,9 @@ cd /etc/openvpn
 # This file tells `serveconfig` that there is a config there
 touch placeholder
 [ -f dh.pem ] ||
-    openssl dhparam -out dh.pem 1024
+    openssl dhparam -out dh.pem 4096
 [ -f key.pem ] ||
-    openssl genrsa -out key.pem 2048
+    openssl genrsa -out key.pem 4096
 chmod 600 key.pem
 [ -f csr.pem ] ||
     openssl req -new -key key.pem -out csr.pem -subj /CN=OpenVPN/
@@ -30,8 +30,8 @@ dh dh.pem
 keepalive 10 60
 persist-key
 persist-tun
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
+push "dhcp-option DNS 208.67.222.222"
+push "dhcp-option DNS 208.67.220.220"
 
 proto tcp-server
 port 443
