@@ -10,7 +10,7 @@ getCerts:
 serve:
 	docker run -d --name serverConfig -p 8080:8080 --volumes-from vpnContainer dockervpn serveconfig
 
-servestop:
+stopserve:
 	docker rm -f serverConfig
 
 stop:
@@ -20,3 +20,5 @@ clean:
 	docker rmi -f dockervpn
 
 default: start
+
+.PHONY: start getCerts serve stopserve
