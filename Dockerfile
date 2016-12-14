@@ -1,10 +1,15 @@
 FROM ubuntu:16.10
 
+ENV TZ Europe/Paris
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 RUN apt-get update -q           &&\
     apt-get install -qy openvpn   \
                         iptables  \
                         socat     \
-                        curl
+                        curl 
 
 
 ADD ./bin /usr/local/sbin
